@@ -217,7 +217,6 @@ def admi(user):
 		if request.method == 'POST':
 			# db.create_all()
 			images = form.img.data
-			return str(images.filename)
 			name = request.form['ques']
 			if images:
 				ffilee = func(images, name)
