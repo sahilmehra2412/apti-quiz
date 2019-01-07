@@ -1,0 +1,343 @@
+{% extends "layout.html" %} {% block script %}
+<style>
+    .typo h1 {
+        overflow: hidden;
+        /* Ensures the content is not revealed until the animation */
+        border-right: .15em solid orange;
+        /* The typwriter cursor */
+        white-space: nowrap;
+        /* Keeps the content on a single line */
+        margin: 0 auto;
+        /* Gives that scrolling effect as the typing happens */
+        letter-spacing: .15em;
+        /* Adjust as needed */
+        animation: typing 13s steps(40, end) infinite,
+        blink-caret .75s step-end infinite alternate;
+    }
+
+    /* The typing effect */
+
+    @keyframes typing {
+        from,
+        to {
+            width: 0
+        }
+        40%,
+        60% {
+            width: 100%
+        }
+    }
+
+    /* The typewriter cursor effect */
+
+    @keyframes blink-caret {
+        from,
+        to {
+            border-color: transparent
+        }
+        50% {
+            border-color: #F05F40;
+        }
+    }
+
+
+    .register {
+        background: -webkit-linear-gradient(left, #F05F40, #DA3816);
+        margin-top: 3%;
+        padding: 3%;
+    }
+
+    .register-left {
+        text-align: center;
+        color: #fff;
+        margin-top: 4%;
+    }
+
+    .register-left input {
+        border: none;
+        border-radius: 1.5rem;
+        padding: 2%;
+        width: 60%;
+        background: #f8f9fa;
+        font-weight: bold;
+        color: #383d41;
+        margin-top: 30%;
+        margin-bottom: 3%;
+        cursor: pointer;
+    }
+
+    .register-right {
+        background: #f8f9fa;
+        border-top-left-radius: 10% 50%;
+        border-bottom-left-radius: 10% 50%;
+    }
+
+    .register-left img {
+        margin-top: 15%;
+        margin-bottom: 5%;
+        width: 25%;
+        -webkit-animation: mover 2s infinite alternate;
+        animation: mover 1s infinite alternate;
+    }
+
+    @-webkit-keyframes mover {
+        0% {
+            transform: translateY(0);
+        }
+        20% {
+            transform: translateY(-4px);
+        }
+        40% {
+            transform: translateY(-8px);
+        }
+        60% {
+            transform: translateY(-12px);
+        }
+        80% {
+            transform: translateY(-16px);
+        }
+        100% {
+            transform: translateY(-20px);
+        }
+    }
+
+    @keyframes mover {
+        0% {
+            transform: translateY(0);
+        }
+        20% {
+            transform: translateY(-4px);
+        }
+        40% {
+            transform: translateY(-8px);
+        }
+        60% {
+            transform: translateY(-12px);
+        }
+        80% {
+            transform: translateY(-16px);
+        }
+        100% {
+            transform: translateY(-20px);
+        }
+    }
+
+    .register-left p {
+        font-weight: lighter;
+        padding: 12%;
+        margin-top: -9%;
+    }
+
+    .register .register-form {
+        padding: 10%;
+        margin-top: 10%;
+    }
+
+    .btnRegister {
+        float: right;
+        margin-top: 10%;
+        border: none;
+        border-radius: 1.5rem;
+        padding: 2%;
+        background: #F05F40;
+        color: #fff;
+        font-weight: 600;
+        width: 50%;
+        cursor: pointer;
+    }
+
+    .register .nav-tabs {
+        margin-top: 3%;
+        border: none;
+        background: #F05F40;
+        border-radius: 1.5rem;
+        width: 28%;
+        float: right;
+    }
+
+    .register .nav-tabs .nav-link {
+        padding: 2%;
+        height: 34px;
+        font-weight: 600;
+        color: #fff;
+        border-top-right-radius: 1.5rem;
+        border-bottom-right-radius: 1.5rem;
+    }
+
+    .register .nav-tabs .nav-link:hover {
+        border: none;
+    }
+
+    .register .nav-tabs .nav-link.active {
+        width: 100px;
+        color: #F05F40;
+        border: 2px solid #F05F40;
+        border-top-left-radius: 1.5rem;
+        border-bottom-left-radius: 1.5rem;
+    }
+
+    .register-heading {
+        text-align: center;
+        margin-top: 8%;
+        margin-bottom: -15%;
+        color: #495057;
+    }
+
+</style>
+{% endblock %} {% block body %}
+<header class="masthead text-center text-white d-flex">
+    <div class="container my-auto">
+        <div class="row">
+            <div class="col-lg-10 mx-auto typo">
+                <h1 class="text-uppercase">
+                    <strong>Welcome to the test.</strong>
+                </h1>
+                <hr>
+            </div>
+            <div class="col-lg-8 mx-auto">
+                <p class="text-faded mb-5">Login or SignUp to take the test and Check where you stand.</p>
+                <a class="btn btn-primary btn-xl js-scroll-trigger" href="#login">Login/Signup</a>
+            </div>
+        </div>
+    </div>
+</header>
+<section id="login">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 class="section-heading">Login or SignUp</h2>
+                <hr class="my-4">
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <!--
+<div class="col-lg-4 col-md-12 text-center">
+    <div class="service-box mt-5 mx-auto">
+        <i class="fas fa-4x fa-gem text-primary mb-3 sr-icon-1"></i>
+        <h3 class="mb-3">Sturdy Templates</h3>
+        <p class="text-muted mb-0">Our templates are updated regularly so they don't break.</p>
+    </div>
+</div>
+-->
+            <div class="col-lg-12 col-md-12 text-center">
+                <div class="container register">
+                    <div class="row">
+                        <div class="col-md-3 register-left">
+                            <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt="" />
+                            <h3>Welcome</h3>
+                            <p>Login now and take part in the this aptitude quiz!</p>
+                        </div>
+                        <div class="col-md-9 register-right">
+                            <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">SignUp</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Login</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                    <form action="" method="post" id="form1" class="signup">
+                                        <h3 class="register-heading">SignUp Here</h3>
+                                        <div class="row register-form">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <input type="text" name="fname" class="form-control" placeholder="First Name *" value="" required />
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="text" name="lname" class="form-control" placeholder="Last Name *" value="" required />
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="password" name="pass" class="form-control" placeholder="Password *" value="" required />
+                                                </div>
+                                                <div class="form-group">
+                                                    <div class="maxl">
+                                                        <label class="radio inline">
+                                                            <input type="radio" name="gender" value="male" checked>
+                                                            <span> Male </span>
+                                                        </label>
+                                                        <label class="radio inline">
+                                                            <input type="radio" name="gender" value="female">
+                                                            <span>Female </span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <input type="email" name="email" class="form-control" placeholder="Your Email *" value="" required />
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="text" minlength="10" maxlength="10" name="txtEmpPhone" class="form-control" placeholder="Your Phone" value="" />
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="password" name="conpass" class="form-control" placeholder="Confirm Password *" value="" required />
+                                                </div>
+                                                <input type="submit" class="btnRegister" value="SignUp" />
+                                                <input type="hidden" name="test" value="signup" />
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div class="tab-pane fade show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                    <form action="" method="post">
+                                        <h3 class="register-heading">Login</h3>
+                                        <div class="row register-form">
+                                            <div class="col-md-6">
+                                                <div class="form-group">
+                                                    <input type="text" name="lemail" class="form-control" placeholder="E-mail *" value="" required />
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="password" name="lpass" class="form-control" placeholder="Password *" value="" required />
+                                                </div>
+
+                                            </div>
+                                            <div class="col-md-6">
+                                                <input type="submit" class="btnRegister" value="Login" />
+                                                <input type="hidden" name="test" value="login" />
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="container" style="margin-top: 30px; width: 50%;">
+                    <!--
+                    {% with messages = get_flashed_messages(with_categories=true) %} 
+                        {% if messages %} 
+                            {% for category, message in messages %}
+                                <div class="alert alert-{{category}}">{{message}}</div>
+                            {% endfor %} 
+                        {% endif %} 
+                    {% endwith %}
+-->
+                    {% if error %}
+                    <div class="alert alert-danger"><strong>{{error}}</strong></div>
+                    {% endif %}
+                    {% if msg %}
+                    <div class="alert alert-success"><strong>{{msg}}</strong></div>
+                    {% endif %}
+                    {% if war %}
+                    <div class="alert alert-warning"><strong>{{war}}</strong></div>
+                    {% endif %}
+                </div>
+                <!--
+            <div class="col-lg-4 col-md-12 text-center">
+                <div class="service-box mt-5 mx-auto">
+                    <i class="fas fa-4x fa-code text-primary mb-3 sr-icon-3"></i>
+                    <h3 class="mb-3">Up to Date</h3>
+                    <p class="text-muted mb-0">We update dependencies to keep things fresh.</p>
+                </div>
+            </div>
+-->
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

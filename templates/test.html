@@ -1,0 +1,24 @@
+
+<script>
+var minute = 0,
+second = 10;
+var tt = setInterval(function() {
+if (minute == 0 && second == 1) {
+ts();
+}
+console.log(minute + ":" + second);
+if (second => 1) {
+second--;
+}
+if (second == 0) {
+minute--;
+second = 59;
+}
+}, 1000);
+
+function ts() {
+clearInterval(tt);
+};
+
+</script>
+

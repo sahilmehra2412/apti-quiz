@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Aptitude Test</title>
+
+    <link rel="shortcut icon" href="{{url_for('static',filename='favicon.png')}}" />
+    <!-- Bootstrap core CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+
+    <!-- Plugin CSS -->
+    <link href="{{url_for('static', filename='css/theme.css')}}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{{url_for('static', filename='css/main.css')}}" rel="stylesheet">
+    <link href="{{url_for('static', filename='css/add.css')}}" rel="stylesheet">
+    <style>
+        body{
+            background-image: linear-gradient(to left, #e0e0e0, #d5d5d5);
+        }
+        .main-box{
+            border: 1px solid transparent;
+            height: max-content;
+            width: 100%;
+            margin-top: 111px;
+            border-radius: 20px;
+            background-color: #fdfdfd;
+            box-shadow: 5px 5px 15px 5px #bbb;
+            text-align: center;
+        }
+        .questions{
+            margin: auto;
+        }
+        .button{
+            float: right;
+            margin-right: 45px;
+        }
+        .funkyradio div {
+            clear: both;
+            overflow: hidden;
+            width: 100%;
+        }
+        img{
+          width: 100%;
+        }
+
+.funkyradio label {
+  width: 100%;
+  border-radius: 3px;
+  border: 1px solid #D1D3D4;
+  font-weight: normal;
+}
+
+.funkyradio input[type="radio"]:empty,
+.funkyradio input[type="checkbox"]:empty {
+  display: none;
+}
+
+.funkyradio input[type="radio"]:empty ~ label,
+.funkyradio input[type="checkbox"]:empty ~ label {
+  position: relative;
+  line-height: 2.5em;
+  text-indent: 3.25em;
+  margin-top: 2em;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+}
+
+.funkyradio input[type="radio"]:empty ~ label:before,
+.funkyradio input[type="checkbox"]:empty ~ label:before {
+  position: absolute;
+  display: block;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  content: '';
+  width: 2.5em;
+  background: #D1D3D4;
+  border-radius: 3px 0 0 3px;
+}
+
+.funkyradio input[type="radio"]:hover:not(:checked) ~ label,
+.funkyradio input[type="checkbox"]:hover:not(:checked) ~ label {
+  color: #888;
+}
+
+.funkyradio input[type="radio"]:hover:not(:checked) ~ label:before,
+.funkyradio input[type="checkbox"]:hover:not(:checked) ~ label:before {
+  content: '\2714';
+  text-indent: .9em;
+  color: #C2C2C2;
+}
+
+.funkyradio input[type="radio"]:checked ~ label,
+.funkyradio input[type="checkbox"]:checked ~ label {
+  color: #777;
+}
+
+.funkyradio input[type="radio"]:checked ~ label:before,
+.funkyradio input[type="checkbox"]:checked ~ label:before {
+  content: '\2714';
+  text-indent: .9em;
+  color: #333;
+  background-color: #ccc;
+}
+
+.funkyradio input[type="radio"]:focus ~ label:before,
+.funkyradio input[type="checkbox"]:focus ~ label:before {
+  box-shadow: 0 0 0 3px #999;
+}
+
+.funkyradio-default input[type="radio"]:checked ~ label:before,
+.funkyradio-default input[type="checkbox"]:checked ~ label:before {
+  color: #333;
+  background-color: #ccc;
+}
+
+    </style>
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
+</head>
+
+<body id="page-top">
+
+    <!-- Navigation -->
+    <div>
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand js-scroll-trigger" href="{{url_for('index')}}">Aptitude Test</a>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                {% if session['username'] %}
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link js-scroll-trigger" id="log" href="{{url_for('logout')}}">Welcome {{user}}</a>
+                        </li>
+                    </ul>
+                </div>
+                {% endif %}
+            </div>
+        </nav>
+    </div>
+    <div class="container main-box">
+      <br>
+      <h3 class="h3">Time Left: <small class="muted" id="time"></small></h3>
+        <form action="" name="test" method="post" enctype="multipart/form-data">
+            <div class=" container questions">
+              {% set count = [1] %}
+                {% for q in ques %}
+                  <div class="funkyradio">
+                    <div class="funkyradio-default">
+                      <table class="table">
+                        {% if q.image %}
+                          <img src="../static/img/{{q.image}}">
+                        {% endif %}
+                        <br>
+                        <br>
+                        <thead>
+                          <tr>
+                            <th scope="col">Q: {{q.question}}</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {% for items in q.answers %}
+                          <tr>
+                            <td><input type="radio" name="{{count}}" id="{{items}}" value="{{items}}"/><label for="{{items}}">{{items}}</label></td>
+                            <td><input type="text" name="name"></td>
+                          </tr>
+                          {% endfor %}
+                        </tbody>
+                      </table>
+                    </div>
+                </div>
+                <hr>
+                  {% if count.append(count.pop() + 1) %}{% endif %}
+                {% endfor %}
+            <button type="submit" class="btn btn-primary btn-xl js-scroll-trigger button" href="{{url_for('test',user=user,num=num,score=score)}}">Next <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+        </form>
+
+    </div>
+    <script>
+      var time = document.getElementById('time');
+      var minute = {{t}},
+      second = 0;
+      var tt = setInterval(function() {
+      if (minute == 0 && second == 1) {
+      ts();
+      }
+      time.textContent = minute.toString() + ":" + second.toString();
+      if (second => 1) {
+      second--;
+      }
+      if (second == 0) {
+      minute--;
+      second = 59;
+      }
+      }, 1000);
+
+      function ts() {
+      clearInterval(tt);
+      document.test.submit();
+      };
+
+
+    </script>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="{{url_for('static', filename='js/index.js')}}"></script>
+    <script src="{{url_for('static', filename='js/new.js')}}"></script>
+    <script src="{{url_for('static', filename='js/theme.js')}}"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="{{url_for('static', filename='js/creative.js')}}"></script>
+
+</body>
+
+</html>
