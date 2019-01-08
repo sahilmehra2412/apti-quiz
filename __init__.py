@@ -199,12 +199,15 @@ def test(user,category):
 			count = [1]
 			for i in range(1,3):
 				for elem in cor_ans:
-					if request.form[str(count)] == elem:
+					name = request.form.get(str(count), None)
+					if name is None:
+						score+=0
+					elif request.form[str(count)] == elem:
 						score+=10
 				count.append(count.pop() + 1)
-			return render_template('score.html', score=score)
-		t = cat.time
-		return render_template('login.html', ques=ques, t=t)
+			return render_template('score.html', score=score, user=user)
+		t = cat.category_time
+		return render_template('login.html', ques=ques, t=t,user=user)
 	war = 'Please Login!'
 	return render_template('index.html', war=war)
 
@@ -220,6 +223,8 @@ def admi(user):
 			name = request.form['ques']
 			if images:
 				ffilee = func(images, name)
+			else:
+				ffilee = None
 			answer_list = []
 			answer_list.append(request.form['coans'])
 			for i in range(1,4):
@@ -243,9 +248,12 @@ def result(user,score):
 @app.route('/<user>/categories', methods = ['POST','GET'])
 def categories(user):
 	if session['username']:
-		new = request.form['cat']
-		updated = Category.query.filter_by(category_name = new).update({Category.category_time:request.form['cat_time']})
-		return render_template('categories.html')
+		if request.method == 'POST':
+			new = request.form['category']
+			updated = Category.query.filter_by(category_name = new).update({Category.category_time:request.form['cat_time']})
+			db.session.commit()
+			return redirect(url_for('categories',user=user))
+		return render_template('categories.html', user=user)
 	return redirect(url_for('index'))
 
 @app.route('/<user>/allusers')

@@ -41,10 +41,10 @@
         .questions{
             margin: auto;
         }
-        .button{
+        /*.button{
             float: right;
             margin-right: 45px;
-        }
+        }*/
         .funkyradio div {
             clear: both;
             overflow: hidden;
@@ -156,7 +156,8 @@
             </div>
         </nav>
     </div>
-    <div class="container main-box">
+    <div class="main-box">
+      <div class="container">
       <br>
       <h3 class="h3">Time Left: <small class="muted" id="time"></small></h3>
         <form action="" name="test" method="post" enctype="multipart/form-data">
@@ -167,7 +168,7 @@
                     <div class="funkyradio-default">
                       <table class="table">
                         {% if q.image %}
-                          <img src="../static/img/{{q.image}}">
+                          <img src="../static/img/ques/{{q.image}}">
                         {% endif %}
                         <br>
                         <br>
@@ -179,8 +180,7 @@
                         <tbody>
                           {% for items in q.answers %}
                           <tr>
-                            <td><input type="radio" name="{{count}}" id="{{items}}" value="{{items}}"/><label for="{{items}}">{{items}}</label></td>
-                            <td><input type="text" name="name"></td>
+                            <td><input type="radio" name="{{count}}" id="{{items}}" value="{{items}}" required /><label for="{{items}}">{{items}}</label></td>
                           </tr>
                           {% endfor %}
                         </tbody>
@@ -190,33 +190,35 @@
                 <hr>
                   {% if count.append(count.pop() + 1) %}{% endif %}
                 {% endfor %}
-            <button type="submit" class="btn btn-primary btn-xl js-scroll-trigger button" href="{{url_for('test',user=user,num=num,score=score)}}">Next <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
+            <button type="submit" class="btn btn-primary btn-xl js-scroll-trigger button" href="{{url_for('result',user=user,score=score)}}">Next <i class="fa fa-arrow-right" aria-hidden="true"></i></button>
         </form>
-
+      </div>
     </div>
     <script>
-      var time = document.getElementById('time');
-      var minute = {{t}},
-      second = 0;
-      var tt = setInterval(function() {
-      if (minute == 0 && second == 1) {
-      ts();
-      }
-      time.textContent = minute.toString() + ":" + second.toString();
-      if (second => 1) {
-      second--;
-      }
-      if (second == 0) {
-      minute--;
-      second = 59;
-      }
-      }, 1000);
+      // var time = document.getElementById('time');
+      // var minute = {{t}},
+      // second = 1;
+      // var tt = setInterval(function() {
+      // if (minute == 0 && second == 1) {
+      // ts();
+      // }
+      // time.textContent = minute.toString() + ":" + second.toString();
+      // if (second => 1) {
+      // second--;
+      // }
+      // if (second == 0) {
+      // minute--;
+      // second = 59;
+      // }
+      // }, 1000);
 
-      function ts() {
-      clearInterval(tt);
-      document.test.submit();
+      // function ts() {
+      // clearInterval(tt);
+      // document.test.submit();
+      // };
+      window.onload=function(){ 
+        window.setTimeout(function() { document.test.submit(); }, 5000);
       };
-
 
     </script>
 

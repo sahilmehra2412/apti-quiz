@@ -25,7 +25,7 @@
         }
         .main-box{
             border: 1px solid transparent;
-            height: 620px;
+            height: inherit;
             width: 800px;
             margin-top: 111px;
             border-radius: 20px;
@@ -91,7 +91,7 @@
                     </div>
                 </div> 
                 <br>
-                <select class="custom-select" name="cat" id="inputGroupSelect01" required>
+                <select class="custom-select" name="category" id="inputGroupSelect01" required>
                     <option selected hidden></option>
                     <option value="Mathematics">Mathematics</option>
                     <option value="Reasoning">Reasoning</option>
@@ -106,6 +106,10 @@
                 <br>
                 <div class="category" style="">
                     <a class="btn btn-sm btn-primary" id="b" href="{{url_for('admi',user=user)}}" style="width: 100%; border-radius: 5px;">Add Questions</a>
+                </div>
+                <br>
+                <div class="category" style="">
+                    <a class="btn btn-sm btn-primary" id="b" href="{{url_for('allusers', user=user)}}" style="width: 100%; border-radius: 5px;">See All Users</a>
                 </div>
             </div>
             <button type="submit" class="btn btn-primary btn-xl js-scroll-trigger button" href="#">Submit <i class="fa fa-paper-plane" aria-hidden="true"></i></button>
