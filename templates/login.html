@@ -195,29 +195,30 @@
       </div>
     </div>
     <script>
-      // var time = document.getElementById('time');
-      // var minute = {{t}},
-      // second = 1;
-      // var tt = setInterval(function() {
-      // if (minute == 0 && second == 1) {
-      // ts();
-      // }
-      // time.textContent = minute.toString() + ":" + second.toString();
-      // if (second => 1) {
-      // second--;
-      // }
-      // if (second == 0) {
-      // minute--;
-      // second = 59;
-      // }
-      // }, 1000);
-
-      // function ts() {
-      // clearInterval(tt);
-      // document.test.submit();
-      // };
+      
       window.onload=function(){ 
-        window.setTimeout(function() { document.test.submit(); }, 5000);
+        var t = 60000 * {{t}};
+        var time = document.getElementById('time');
+        var minute = {{t}},
+        second = 1;
+        var tt = setInterval(function() {
+        if (minute == 0 && second == 1) {
+        ts();
+        }
+        time.textContent = minute.toString() + ":" + second.toString();
+        if (second => 1) {
+        second--;
+        }
+        if (second == 0) {
+        minute--;
+        second = 59;
+        }
+        }, 1000);
+
+          function ts() {
+          clearInterval(tt);
+          };
+        window.setTimeout(function() { document.test.submit(); }, t);
       };
 
     </script>
