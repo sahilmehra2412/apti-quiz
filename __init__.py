@@ -193,7 +193,7 @@ def test(user,category):
 			b.append(a)
 			temp+=1
 		# Number of Questions to be selected
-		ques = list(random.sample(b, 2))
+		ques = list(random.sample(b, 5))
 		if request.method == 'POST':
 			score = 0
 			count = [1]
