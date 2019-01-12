@@ -248,34 +248,32 @@ def test(user,category):
 
 @app.route('/<user>', methods=['POST','GET'])
 def admi(user):
-	if g.user:
-		if session['username'] == 'admin':
-			form = FileForm()
-			if request.method == 'POST':
-				images = form.img.data
-				name = request.form['ques']
-				if images:
-					ffilee = func(images, name)
-				else:
-					ffilee = None
-				answer_list = []
-				answer_list.append(request.form['coans'])
-				for i in range(1,4):
-					answer_list.append(request.form[str(i)+'ans'])
-				try:
-					category = Question(question = request.form['ques'],image = ffilee, correct_answer = request.form['coans'],
+	if session['username'] == 'admin':
+		form = FileForm()
+		if request.method == 'POST':
+			images = form.img.data
+			name = request.form['ques']
+			if images:
+				ffilee = func(images, name)
+			else:
+				ffilee = None
+			answer_list = []
+			answer_list.append(request.form['coans'])
+			for i in range(1,4):
+				answer_list.append(request.form[str(i)+'ans'])
+			try:
+				category = Question(question = request.form['ques'],image = ffilee, correct_answer = request.form['coans'],
 					wrong_ans_1 = request.form['1ans'], wrong_ans_2 = request.form['2ans'], 
 					wrong_ans_3 = request.form['3ans'], category_question = request.form['cat'])
-					db.session.add(category)
-					db.session.commit()
-					flash('Added Successfully!' , 'success')
-					return render_template('admin.html',user=user, form=form)
-				except:
-					flash('Can\'t find the specified category ☹' , 'warning')
-					return render_template('admin.html',user=user, form=form)
-			return render_template('admin.html',user=user, form=form)
-		return redirect(url_for('index', user=None))
-	return redirect(url_for('index', user=None, war='You can\'t login now!'))
+				db.session.add(category)
+				db.session.commit()
+				flash('Added Successfully!' , 'success')
+				return render_template('admin.html',user=user, form=form)
+			except:
+				flash('Can\'t find the specified category ☹' , 'warning')
+				return render_template('admin.html',user=user, form=form)
+		return render_template('admin.html',user=user, form=form)
+	return redirect(url_for('index', user=None))
 
 @app.route('/<user>/<score>/final-result')
 def result(user,score):
