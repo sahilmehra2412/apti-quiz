@@ -163,7 +163,7 @@ ol li:hover {
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" id="log" href="{{url_for('logout')}}">Welcome {{user}}</a>
+                            <a class="nav-link js-scroll-trigger" id="log" href="{{url_for('logout')}}">logout</a>
                         </li>
                     </ul>
                 </div>
@@ -191,6 +191,13 @@ ol li:hover {
                 </div>
                 <div class="col-lg-9 col-md-12">
                     <div class="container">
+                        {% with messages = get_flashed_messages(with_categories=true) %}
+                        {% if messages %}
+                        {% for category, message in messages %}
+                        <div class="alert alert-{{category}}">{{message}}</div>
+                        {% endfor %}
+                        {% endif %}
+                        {% endwith %}
                         <label for="name">Change Your Name:</label>
                         <input type="text" id="name" name="name" value="{{user}}" class="form-control">
                         <br>
@@ -203,7 +210,7 @@ ol li:hover {
                         <br>
                         <ol id="ol" name="language">
                             {% for _ in lst %}
-                                <li class="lang" id="{{_}}">{{_}}</li>
+                            <li class="lang" id="{{_}}">{{_}}</li>
                             {% endfor %}
                         </ol>
                         <br>
@@ -225,7 +232,8 @@ ol li:hover {
     {% if messages %}
     {% for category, message in messages %}
     <script>
-    alert('Added Successfully')
+        alert('Added Successfully')
+
     </script>
     {% endfor %}
     {% endif %}
@@ -240,42 +248,43 @@ ol li:hover {
     <!-- Custom scripts for this template -->
     <script src="{{url_for('static', filename='js/creative.js')}}"></script>
     <script type="text/javascript">
-    var document, myNodelist, i, span, txt, li;
-    var skill = document.getElementById('skills');
-    skill.addEventListener('keydown', function(e) {
-        if (e.key == 'Enter') {
-            li = document.createElement('li');
-            var ol = document.getElementById('ol');
-            li.textContent = skill.value;
-            li.id = skill.value;
-            li.className = 'lang';
-            // li.appendChild(btn)
-            ol.appendChild(li);
-            myNodelist = document.getElementsByClassName("lang");
-            for (i = 0; i < myNodelist.length; i++) {
-                span = document.createElement("i");
-                txt = document.createTextNode("\u00D7");
-                span.className = "close";
-                span.appendChild(txt);
-                myNodelist[i].appendChild(span);
+        var document, myNodelist, i, span, txt, li;
+        var skill = document.getElementById('skills');
+        skill.addEventListener('keydown', function(e) {
+            if (e.key == 'Enter') {
+                li = document.createElement('li');
+                var ol = document.getElementById('ol');
+                li.textContent = skill.value;
+                li.id = skill.value;
+                li.className = 'lang';
+                // li.appendChild(btn)
+                ol.appendChild(li);
+                myNodelist = document.getElementsByClassName("lang");
+                for (i = 0; i < myNodelist.length; i++) {
+                    span = document.createElement("i");
+                    txt = document.createTextNode("\u00D7");
+                    span.className = "close";
+                    span.appendChild(txt);
+                    myNodelist[i].appendChild(span);
+                }
             }
-        }
-    });
+        });
 
-    function readURL(input) {
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                $('#imagePreview').css('background-image', 'url(' + e.target.result + ')');
-                $('#imagePreview').hide();
-                $('#imagePreview').fadeIn(650);
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#imagePreview').css('background-image', 'url(' + e.target.result + ')');
+                    $('#imagePreview').hide();
+                    $('#imagePreview').fadeIn(650);
+                }
+                reader.readAsDataURL(input.files[0]);
             }
-            reader.readAsDataURL(input.files[0]);
         }
-    }
-    $("#imageUpload").change(function() {
-        readURL(this);
-    });
+        $("#imageUpload").change(function() {
+            readURL(this);
+        });
+
     </script>
 </body>
 

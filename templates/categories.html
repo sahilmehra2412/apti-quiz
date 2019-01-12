@@ -71,7 +71,7 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" id="log" href="{{url_for('logout')}}">Welcome {{user}}</a>
+                            <a class="nav-link js-scroll-trigger" id="log" href="{{url_for('logout')}}">Logout</a>
                         </li>
                     </ul>
                 </div>
@@ -80,6 +80,13 @@
         </nav>
     </div>
     <div class="container main-box">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            <div class="alert alert-{{category}}">{{message}}</div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
         <h1 class="main-text">Edit Categories</h1>
         <hr>
         <br>

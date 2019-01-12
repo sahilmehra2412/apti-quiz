@@ -148,7 +148,7 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger" id="log" href="{{url_for('logout')}}">Welcome {{user}}</a>
+                            <a class="nav-link js-scroll-trigger" id="log" href="{{url_for('logout')}}">logout</a>
                         </li>
                     </ul>
                 </div>
@@ -159,6 +159,13 @@
     <div class="main-box">
       <div class="container">
       <br>
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            <div class="alert alert-{{category}}">{{message}}</div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
       <h3 class="h3">Time Left: <small class="muted" id="time"></small></h3>
         <form action="" name="test" method="post" enctype="multipart/form-data">
             <div class=" container questions">
